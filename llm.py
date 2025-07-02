@@ -30,7 +30,7 @@ def tts(text: str) -> io.BytesIO:
     텍스트를 OpenAI TTS API로 오디오로 변환하여 BytesIO 객체로 반환
     """
     response = client.audio.speech.create(
-        model="gpt-4o-mini-tts", input=text, voice="echo"
+        model="gpt-4o-mini-tts", input=text, voice="shimmer", speed=1.2
     )
     audio_bytes = response.read()  # 바이트로 읽기
     return io.BytesIO(audio_bytes)  # BytesIO로 감싸서 반환
