@@ -9,14 +9,15 @@ class Character:
 
     def chat(self, messages: list[dict[str, str]]) -> str:
         examples = "\n".join(
-            f"질문:{pattern['질문']}\n답변:{pattern['답변']}\n\n"
+            f"질문:{pattern['질문']}\n답변:{pattern['답변']}\n"
             for pattern in self.chat_patterns
         )
         prompt = f"""{self.prompt}
-        가능하면 짧고 간결하게, 그리고 재치 있게 답변해 줘.
+가능하면 짧고 간결하게 대답해줘.
 
 답변할 때 다음의 예시를 참고해 주세요.
 {examples}
 """
+
         response = call_llm(messages=[{"role": "system", "content": prompt}] + messages)
         return response.strip()
